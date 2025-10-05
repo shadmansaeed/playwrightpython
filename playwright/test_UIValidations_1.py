@@ -23,3 +23,36 @@ def test_UIValidationDynamicScript(page: Page):
 
     expect(page.locator(".media-body")).to_have_count(2)  # 2 ta product validate korbe
     time.sleep(10)
+
+
+# child page operation
+# not working (questioned at course teacher)
+def test_childWindowHandle(page: Page):
+    page.goto("https://rahulshettyacademy.com/loginpagePractise/")
+
+    with page.expect_popup() as newPage_info:
+        page.locator(".blinkingText").click()  # new page
+        childPage = newPage_info.value
+        text= childPage.locator(".red").text_content()  # validate child window is working or not
+        print(text)
+
+
+
+
+# working childwindow
+def test_childWindowHandle(page: Page):
+    page.goto("https://rahulshettyacademy.com/loginpagePractise/")
+
+    # manually force open in new tab using JS
+    with page.context.expect_page() as newPage_info:
+        page.evaluate("window.open(document.querySelector('.blinkingText').href, '_blank')")
+    childPage = newPage_info.value
+
+    text = childPage.locator(".red").text_content()
+    print(text)
+
+
+
+
+
+
