@@ -33,10 +33,8 @@ def test_childWindowHandle(page: Page):
     with page.expect_popup() as newPage_info:
         page.locator(".blinkingText").click()  # new page
         childPage = newPage_info.value
-        text= childPage.locator(".red").text_content()  # validate child window is working or not
+        text = childPage.locator(".red").text_content()  # validate child window is working or not
         print(text)
-
-
 
 
 # working childwindow
@@ -49,10 +47,22 @@ def test_childWindowHandle(page: Page):
     childPage = newPage_info.value
 
     text = childPage.locator(".red").text_content()
-    print(text)
+    print(text)  # Please email us at mentor@rahulshettyacademy.com with below template to receive response
+    words = text.split("at")  # 0  -> Please email us  1 -> mentor@rahulshettyacademy.com with below template to receive response
+    email = words[1].strip().split(" ")[0]  # (space er opor depend kore index korse) 0 -> mentor@rahulshettyacademy.com 1 ->
+    assert email == "mentor@rahulshettyacademy.com"
 
 
 
-
-
-
+# Got answer from my UDEMY question, trainer give me this code
+def test_child_window_practice(page: Page):
+    page.goto("https://rahulshettyacademy.com/loginpagePractise/")
+    # expect_popup() is the keyword which will fetch new window and store it in a vairbale - new_page_info
+    with page.expect_popup() as new_page_info:
+        page.get_by_role("link", name="Free Access to InterviewQues/ResumeAssistance/Material").click()
+        child_window = new_page_info.value  # It will get the new window instance
+        text = child_window.locator(".red").text_content()  # text_content() to extract text from the locator
+        print(text)
+        word = text.split("at")
+        email_id = word[1].strip().split(" ")[0]
+        assert email_id == "mentor@rahulshettyacademy.com"
