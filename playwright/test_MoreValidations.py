@@ -24,6 +24,20 @@ def test_UIChecks(page: Page):
     pageFrame.get_by_role("link", name="All Access plan").click()
     expect(pageFrame.locator("body")).to_contain_text("Happy Subscibers!")
 
+    #
+    # Check the price of rice is equal to 37
+    # identify the price column
+    # identify rice row
+    # extract the price of the rice
+    page.goto("https://rahulshettyacademy.com/seleniumPractise/#/offers")
+    for index in range(page.locator("th").count()):
+        if page.locator("th").nth(index).filter(has_text="Price").count()>0:
+            pricecolumnValue = index
+            print(f"Price column value is {pricecolumnValue}") # {} -- runtime execution
+            break
+
+    riceRow= page.locator("tr").filter(has_text="Rice")
+
 
 
 
