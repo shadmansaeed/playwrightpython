@@ -54,6 +54,7 @@ def test_childWindowHandle(page: Page):
 
 
 
+
 # Got answer from my UDEMY question, trainer give me this code
 def test_child_window_practice(page: Page):
     page.goto("https://rahulshettyacademy.com/loginpagePractise/")

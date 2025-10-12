@@ -4,6 +4,8 @@ from playwright.sync_api import Page, expect
 
 
 def test_UIChecks(page: Page):
+
+    #hide/display and placeholder
     page.goto("https://rahulshettyacademy.com/AutomationPractice/")
 
     expect(page.get_by_placeholder("Hide/Show Example")).to_be_visible()  # placeholder
@@ -13,11 +15,15 @@ def test_UIChecks(page: Page):
     time.sleep(2)
 
 
-
     #AlertBoxes
     page.on("dialog", lambda dialog: dialog.accept())  # dialog box asle jeno accept korte pare eijonno use kora hoise
     page.get_by_role("button", name="Confirm").click()  # oneliner function(anonymous functions are used as lambda)
-    time.sleep(3)
+
+
+    #MouseHover
+    page.locator("#mousehover").hover()
+    page.get_by_role("link", name="Top").click()
+
 
     # FrameHandling
     pageFrame = page.frame_locator("#courses-iframe")
@@ -32,11 +38,15 @@ def test_UIChecks(page: Page):
     page.goto("https://rahulshettyacademy.com/seleniumPractise/#/offers")
     for index in range(page.locator("th").count()):
         if page.locator("th").nth(index).filter(has_text="Price").count()>0:
-            pricecolumnValue = index
-            print(f"Price column value is {pricecolumnValue}") # {} -- runtime execution
+            priceColumnValue = index
+            print(f"Price column value is {priceColumnValue}") # {} -- runtime execution
             break
 
-    riceRow= page.locator("tr").filter(has_text="Rice")
+    riceRow = page.locator("tr").filter(has_text="Rice")
+    expect(riceRow.locator("td").nth(priceColumnValue)).to_have_text("37")
+
+
+ # playwright codegen to collect data and use as
 
 
 
