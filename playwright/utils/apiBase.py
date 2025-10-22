@@ -25,3 +25,6 @@ class APIUtils:
                                                      })
 
         print(response.json())  # to print API response
+        response_body = response.json()
+        orderId = response_body["orders"][0]
+        return orderId
