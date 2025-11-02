@@ -7,9 +7,11 @@ ordersPayload = {"orders": [{"country": "India", "productOrderedId": "68a9614593
 class APIUtils:
 
     def getToken(self, playwright: Playwright, user_credentials):
+        user_email= user_credentials['userEmail']
+        user_Password = user_credentials['userPassword']
         api_request_context = playwright.request.new_context(base_url="https://rahulshettyacademy.com")
         response = api_request_context.post("/api/ecom/auth/login",
-                                            data=loginPayload)
+                                            data={"userEmail": user_email, "userPassword" :user_Password})
         assert response.ok  # login er por 200 code je ok Dekhay setai assert kora hoise
         print(response.json())
         responseBody = response.json()  # json response ke dictionary te neya hoise

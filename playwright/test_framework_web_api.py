@@ -3,7 +3,8 @@ import json
 import pytest
 from playwright.sync_api import Playwright, expect
 
-from utils.apiBase import APIUtils
+from pageObjects.login import LoginPage
+from utils.apiBase1 import APIUtils
 
 # Json file ->util->access into test
 
@@ -25,10 +26,9 @@ def test_e2e_web_api(playwright: Playwright, user_credentials):  # here user_cre
     orderId = api_Utils.createOrder(playwright, user_credentials)
 
     # login
-    page.goto("https://rahulshettyacademy.com/client")
-    page.get_by_placeholder("email@example.com").fill(user_credentials["userEmail"])
-    page.get_by_placeholder("enter your passsword").fill(user_credentials["userPassword"])
-    page.get_by_role("button", name="Login").click()
+    loginPage = LoginPage(page)  # object for login page class
+    loginPage.navigate()
+    loginPage.login()
 
     # Click on Orders
     page.get_by_role("button", name="ORDERS").click()
