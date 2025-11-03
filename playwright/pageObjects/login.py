@@ -5,7 +5,8 @@ class LoginPage:
     def navigate(self):
         self.page.goto("https://rahulshettyacademy.com/client")
 
-    def login(self):
-        self.page.get_by_placeholder("email@example.com").fill(user_credentials["userEmail"])
-        self.page.get_by_placeholder("enter your passsword").fill(user_credentials["userPassword"])
+    def login(self,userEmail,userPassword):
+        self.page.get_by_placeholder("email@example.com").fill(userEmail)
+        self.page.get_by_placeholder("enter your password").fill(userPassword)
+
         self.page.get_by_role("button", name="Login").click()
