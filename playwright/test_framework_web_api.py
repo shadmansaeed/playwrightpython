@@ -31,11 +31,14 @@ def test_e2e_web_api(playwright: Playwright, user_credentials):  # here user_cre
     # login
     loginPage = LoginPage(page)  # object for login page class
     loginPage.navigate()
-    loginPage.login(userName,Password)
+    dashboardPage= loginPage.login(userName,Password)
 
     #Dashboard Page
-    dashboardPage= DashboardPage(page)
-    dashboardPage.selectOrdersNavLink()
+    #dashboardPage= DashboardPage(page)
+    orderHistoryPage= dashboardPage.selectOrdersNavLink()
+    ordersDetailsPage= orderHistoryPage.selectOrder(orderId)
+    ordersDetailsPage.verifyOrderMessage()
+    context.close()
 
     # Click on Orders
     #page.get_by_role("button", name="ORDERS").click()
@@ -44,4 +47,4 @@ def test_e2e_web_api(playwright: Playwright, user_credentials):  # here user_cre
     #row = page.locator("tr").filter(has_text=orderId)  # orderid dile exact orderid khuje pabe
     #row.get_by_role("button", name="View").click()  # ekhane row. use korar jonno exact button e view korbe
     #expect(page.locator(".tagline")).to_contain_text("Thank you for Shopping With Us")
-    #context.close()
+    #
