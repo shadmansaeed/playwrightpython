@@ -20,7 +20,7 @@ with open(json_path, 'r') as f:
 
 
 @pytest.mark.parametrize('user_credentials', user_credentials_list)
-def test_e2e_web_api(playwright: Playwright, user_credentials):
+def test_e2e_web_api(playwright: Playwright,browserInstance,user_credentials):
     userName = user_credentials["userEmail"]
     Password = user_credentials["userPassword"]
 
@@ -33,7 +33,7 @@ def test_e2e_web_api(playwright: Playwright, user_credentials):
     orderId = api_utils.createOrder(playwright, user_credentials)
 
     # Login
-    loginPage = LoginPage(page)
+    loginPage = LoginPage(browserInstance)
     loginPage.navigate()
     dashboardPage = loginPage.login(userName, Password)
 
@@ -42,4 +42,4 @@ def test_e2e_web_api(playwright: Playwright, user_credentials):
     ordersDetailsPage = orderHistoryPage.selectOrder(orderId)
     ordersDetailsPage.verifyOrderMessage()
 
-    context.close()
+    #context.close()
