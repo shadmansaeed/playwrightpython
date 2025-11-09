@@ -5,7 +5,7 @@ from playwright.sync_api import Playwright, expect
 
 from pageObjects.login import LoginPage
 from pageObjects.dashboard import DashboardPage
-from utils.apiBase1 import APIUtils
+from utils.apiBaseFramework import APIUtils
 
 # ---------- JSON PATH FIX ✔ ----------
 # Get absolute path of this test file
