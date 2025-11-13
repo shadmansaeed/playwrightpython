@@ -6,19 +6,19 @@ ordersPayload = {"orders": [{"country": "India", "productOrderedId": "68a9614593
 
 class APIUtils:
 
-    def getToken(self, playwright: Playwright, user_credentials):
-        user_email= user_credentials['userEmail']
-        user_Password = user_credentials['userPassword']
+    def getToken(self, playwright: Playwright):
+        #user_email= user_credentials['userEmail']
+        #user_Password = user_credentials['userPassword']
         api_request_context = playwright.request.new_context(base_url="https://rahulshettyacademy.com")
         response = api_request_context.post("/api/ecom/auth/login",
-                                            data={"userEmail": user_email, "userPassword" :user_Password})
+                                            data={"userEmail": "rahulshetty@gmail.com", "userPassword" :"Iamking@000"})
         assert response.ok  # login er por 200 code je ok Dekhay setai assert kora hoise
         print(response.json())
         responseBody = response.json()  # json response ke dictionary te neya hoise
         return responseBody["token"]  # Response ke return kore dicche
 
-    def createOrder(self, playwright: Playwright, user_credentials):
-        token = self.getToken(playwright, user_credentials)  # self use kore 1 ta method ke onno method e call kora jay
+    def createOrder(self, playwright: Playwright):
+        token = self.getToken(playwright)  # self use kore 1 ta method ke onno method e call kora jay
         api_request_context = playwright.request.new_context(base_url="https://rahulshettyacademy.com/client")
         response = api_request_context.post("/api/ecom/order/create-order",
                                             data=ordersPayload,
