@@ -20,7 +20,7 @@ with open(json_path, 'r') as f:
 
 
 
-@pytest.mark.smoke
+#@pytest.mark.smoke
 @pytest.mark.parametrize('user_credentials', user_credentials_list)
 def test_e2e_web_api(playwright: Playwright,browserInstance,user_credentials):
     userName = user_credentials["userEmail"]

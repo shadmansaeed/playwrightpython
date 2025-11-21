@@ -31,7 +31,7 @@ def test_e2e_web_api(playwright: Playwright, user_credentials):  # here user_cre
     # login
     loginPage = LoginPage(page)  # object for login page class
     loginPage.navigate()
-    dashboardPage= loginPage.login(userName,Password)
+    dashboardPage= loginPage.login(userName, Password)
 
     #Dashboard Page
     #dashboardPage= DashboardPage(page)
