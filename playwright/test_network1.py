@@ -12,9 +12,6 @@ def intercept_response(route):
         json = fakePayloadOrderResponse
     )
 
-
-@pytest.Mark.smoke
-
 def test_Network_1(page : Page):
     # login
     page.goto("https://rahulshettyacademy.com/client")
