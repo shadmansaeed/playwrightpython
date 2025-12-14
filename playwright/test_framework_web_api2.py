@@ -35,3 +35,6 @@ def test_e2e_web_api(playwright: Playwright, browserInstance, user_credentials):
 
 # to run jenkins.war
  # java -jar jenkins.war --httpPort=9090
+
+
+#pytest - -browser_name = chrome - -headed - -tracing = on - -html = report.html
